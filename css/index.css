@@ -1,0 +1,83 @@
+body{
+    background-color: #04A1BF;
+}
+#heading{
+    /*border: 1px solid red;*/
+    height: 40%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 1%;
+}
+#heading h1{
+    text-align: center;
+    font-size: 50px;
+    font-family: Segoe UI Black;
+    color: snow;
+    text-shadow: 2px 3px #63635d;
+}
+#heading i{
+  opacity: 0.1;
+}
+#heading h4{
+    text-align: center;
+    font-family: Verdana;
+    color: #fae596;
+}
+#itemTextBox{
+    margin-top: 4%;
+    margin-left: 26%;
+    width: 45%;
+    height: 8%;
+    border-radius: 5px;
+    border: 1px solid snow;
+    font-family: Verdana;
+    font-size: 18px;
+}
+#enterBtn{
+    background-color: #fae596;
+    height: 31px;
+    line-height: 33px;
+    padding: 1px;
+    width: 50px;
+    text-align: center;
+    border-radius: 5px;
+    font-family: Verdana;
+    font-weight: bold;
+    border: 1px solid #fae596;
+    transition-duration: 0.3s;
+}
+#enterBtn:hover{
+    background-color: #025f70;
+    color: snow;
+    border: 1px solid #025f70;
+    cursor: pointer;
+}
+#task{
+    /*border: 1px solid blue;*/
+    height: auto;
+}
+.list{
+    background-color: #4EB9CD;
+    list-style-type: none;
+    font-size: 20px;
+    width: 40%;
+    margin-left: 30%;
+    padding: 8px;
+    border: 2px solid #025f70;
+    border-radius: 5px;
+    margin-top: 1%;
+    color: white;
+    text-transform: capitalize;
+}
+.close{
+    background-color: #fae596;
+    border: 1px solid #fae596;
+    border-radius: 2px;
+    font-weight: bold;
+}
+.close:hover{
+    background-color: #025f70;
+    color: white;
+    cursor: pointer;
+    border: 1px solid #025f70;
+}

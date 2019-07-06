@@ -1,6 +1,10 @@
 <html>
     <head>
         <title>To Do List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="jqueryui/jquery-ui.css">
+        <link rel="stylesheet" href="jqueryui/jquery-ui.structure.css">
+        <link rel="stylesheet" href="jqueryui/jquery-ui.theme.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     </head>
@@ -16,6 +20,7 @@
         <div id="task">
         </div>
         <script src="js/jquery-3.4.1.js"></script>
+        <script src="jqueryui/jquery-ui.js"></script>
         <script>
             var data;
             var i;
@@ -24,13 +29,25 @@
                 $("#enterBtn").click(function(){
                     data = document.getElementById("itemTextBox").value;
                     if(data.length>0){
-                    $("#task").append('<div class="binding"><input class="list" type="text" value="'+data+'">' + '&nbsp' + '<button class="close">x</button></div>');
+                    $("#task").append('<div class="binding"><i class="fas fa-arrows-alt-v fa-lg drag"></i> <input class="list" type="text" value="'+data+'">' + '&nbsp' + '<button class="close">x</button>' + '&nbsp' + '<input class="check" type="checkbox"></div>');
+                    //$(".binding").draggable({axis:"y", containment:"parent"});
+                    $("#task").sortable();
                     $("#itemTextBox").val("");
                     }
                 });
                 $(document).on("click",".close",function(){
                     $(this).parent().empty();
                     console.log("Closed");
+                });
+                $(document).on("click",".check",function(){
+                  if($(this).prop("checked") == true){
+                    $(this).siblings(".list").css({"color":"#3F51B5", "text-decoration":"line-through"}).attr("readonly","readonly");
+                    console.log("Checked");
+                  }
+                  else {
+                    $(this).siblings(".list").css({"color":"white", "text-decoration":"none"}).prop("readonly", false);
+                    console.log("Unchecked");
+                  }
                 });
             });
         </script>

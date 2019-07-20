@@ -10,6 +10,7 @@
     </head>
     <body>
         <div id="heading">
+            <button type="button" id="login">Login</button>
             <h1><i class="fas fa-clipboard-list"></i> My Task List</h1>
             <h4>Click on 'ADD' to enter your task</h4>
             <h4>Click 'X' to delete your task</h4>
@@ -19,6 +20,21 @@
         </div>
         <div id="task">
         </div>
+<!-- Modal Box -->
+        <div class="modal">
+          <div class="modalContent">
+            <span id="loginHeading">Login</span>
+            <button type="button" id="close">x</button>
+            <form method="post" action="">
+              <input id="mobile" class="loginElements" type="text" placeholder="Mobile Number"> <br>
+              <input id="password" class="loginElements" type="password" placeholder="Password"> <br>
+              <input id="loginSubmit" class="loginElements" type="submit"> <br>
+            </form>
+            <a href="" id="signup">Sign Up</a>
+          </div>
+        </div>
+        <div id="overlay"></div>
+<!-- Jquery -->
         <script src="js/jquery-3.4.1.js"></script>
         <script src="jqueryui/jquery-ui.js"></script>
         <script>
@@ -29,13 +45,12 @@
                 $("#enterBtn").click(function(){
                     data = document.getElementById("itemTextBox").value;
                     if(data.length>0){
-                    $("#task").append('<div class="binding"><i class="fas fa-arrows-alt-v fa-lg drag"></i> <input class="list" type="text" value="'+data+'">' + '&nbsp' + '<button class="close">x</button>' + '&nbsp' + '<input class="check" type="checkbox"></div>');
-                    //$(".binding").draggable({axis:"y", containment:"parent"});
+                    $("#task").append('<div class="binding"><i class="fas fa-arrows-alt-v fa-lg drag"></i> <input class="list" type="text" value="'+data+'">' + '&nbsp' + '<button class="closing">x</button>' + '&nbsp' + '<input class="check" type="checkbox"></div>');
                     $("#task").sortable();
                     $("#itemTextBox").val("");
                     }
                 });
-                $(document).on("click",".close",function(){
+                $(document).on("click",".closing",function(){
                     $(this).parent().empty();
                     console.log("Closed");
                 });
@@ -48,6 +63,18 @@
                     $(this).siblings(".list").css({"color":"white", "text-decoration":"none"}).prop("readonly", false);
                     console.log("Unchecked");
                   }
+                });
+                $("#login").click(function(){
+                  $(".modal").fadeIn("fast",function(){
+                    $(this).css("display","block");
+                  });
+                  $("#overlay").css("display","block");
+                });
+                $("#close").click(function(){
+                  $(".modal").fadeOut("fast",function(){
+                    $(this).hide();
+                  });
+                  $("#overlay").hide();
                 });
             });
         </script>

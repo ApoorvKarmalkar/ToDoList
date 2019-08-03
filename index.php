@@ -20,17 +20,17 @@
         </div>
         <div id="task">
         </div>
-<!-- Modal Box -->
-        <div class="modal">
+<!-- Login Modal Box -->
+        <div id="loginModal" class="modal">
           <div class="modalContent">
             <span id="loginHeading">Login</span>
             <button type="button" id="close">x</button>
-            <form method="post" action="">
-              <input id="mobile" class="loginElements" type="text" placeholder="Mobile Number"> <br>
-              <input id="password" class="loginElements" type="password" placeholder="Password"> <br>
-              <input id="loginSubmit" class="loginElements" type="submit"> <br>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+              <input id="mobile" class="loginElements" type="text" name="mobile" placeholder="Mobile" required> <br>
+              <input id="password" class="loginElements" type="password" name="password" placeholder="Password" required> <br>
+              <input id="loginSubmit" class="loginElements" name="loginSubmit" type="submit"> <br>
             </form>
-            <a href="" id="signup">Sign Up</a>
+            <a href="signup.php" id="signup">Sign Up</a>
           </div>
         </div>
         <div id="overlay"></div>
@@ -65,13 +65,13 @@
                   }
                 });
                 $("#login").click(function(){
-                  $(".modal").fadeIn("fast",function(){
+                  $("#loginModal").fadeIn("fast",function(){
                     $(this).css("display","block");
                   });
                   $("#overlay").css("display","block");
                 });
                 $("#close").click(function(){
-                  $(".modal").fadeOut("fast",function(){
+                  $("#loginModal").fadeOut("fast",function(){
                     $(this).hide();
                   });
                   $("#overlay").hide();

@@ -8,6 +8,13 @@ body{
     padding-right: 2%;
     padding-top: 1%;
 }
+#username {
+  display: none;
+  position: absolute;
+  margin-top: 1px;
+  font-family: Verdana;
+  color: #fae596;
+}
 #login{
   float: right;
   font-size: 18px;
@@ -17,6 +24,20 @@ body{
   box-shadow: 0px 2px 4px #455A64;
 }
 #login:hover{
+  cursor: pointer;
+  background-color: #ef5350;
+  border: 1px solid #ef5350;
+}
+#logout {
+  display: none;
+  float: right;
+  font-size: 18px;
+  padding: 5px 15px;
+  background-color: #e57373;
+  border: 1px solid #e57373;
+  box-shadow: 0px 2px 4px #455A64;
+}
+#logout:hover{
   cursor: pointer;
   background-color: #ef5350;
   border: 1px solid #ef5350;

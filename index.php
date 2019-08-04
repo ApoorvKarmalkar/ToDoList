@@ -1,3 +1,4 @@
+<?php include "server.php" ?>
 <html>
     <head>
         <title>To Do List</title>
@@ -10,7 +11,11 @@
     </head>
     <body>
         <div id="heading">
+            <h3 id="username"><?php echo htmlspecialchars($_SESSION['username']); ?></h3>
             <button type="button" id="login">Login</button>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+              <button type="submit" id="logout" name="logoutSubmit">Logout</button>
+            </form>
             <h1><i class="fas fa-clipboard-list"></i> My Task List</h1>
             <h4>Click on 'ADD' to enter your task</h4>
             <h4>Click 'X' to delete your task</h4>
@@ -25,7 +30,7 @@
           <div class="modalContent">
             <span id="loginHeading">Login</span>
             <button type="button" id="close">x</button>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
               <input id="mobile" class="loginElements" type="text" name="mobile" placeholder="Mobile" required> <br>
               <input id="password" class="loginElements" type="password" name="password" placeholder="Password" required> <br>
               <input id="loginSubmit" class="loginElements" name="loginSubmit" type="submit"> <br>
@@ -78,5 +83,12 @@
                 });
             });
         </script>
+        <?php if(isset($_SESSION['username'])) { ?>
+          <script>
+          $("#login").hide();
+          $("#logout").show();
+          $("#username").show();
+          </script>
+        <?php } ?>
     </body>
 </html>

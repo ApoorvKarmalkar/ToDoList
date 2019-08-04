@@ -40,7 +40,7 @@
       </div>
       <div class="form-group">
         <label for="regMobile">Mobile</label>
-        <input id="regMobile" class="form-control loginElements" type="text" name="mobile" required>
+        <input id="regMobile" class="form-control loginElements" type="text" maxlength="10" pattern="[7|8|9]\d{9}" name="mobile" required>
       </div>
       <div class="form-group">
         <label for="regEmail">Email</label>
@@ -48,7 +48,7 @@
       </div>
       <div class="form-group">
         <label for="regPassword">Password</label>
-        <input id="regPassword" class="form-control loginElements" type="password" name="password_1" required>
+        <input id="regPassword" class="form-control loginElements" type="password" maxlength="16" name="password_1" required>
       </div>
       <div class="form-group">
         <label for="regCnfPassword">Confirm Password</label>

@@ -43,17 +43,23 @@
         <script src="js/jquery-3.4.1.js"></script>
         <script src="jqueryui/jquery-ui.js"></script>
         <script>
-            var data;
+            var mydata;
             var i;
             $("document").ready(function(){
                 $("#heading i").animate({opacity: "1"},"slow");
                 $("#enterBtn").click(function(){
-                    data = document.getElementById("itemTextBox").value;
-                    if(data.length>0){
-                    $("#task").append('<div class="binding"><i class="fas fa-arrows-alt-v fa-lg drag"></i> <input class="list" type="text" value="'+data+'">' + '&nbsp' + '<button class="closing">x</button>' + '&nbsp' + '<input class="check" type="checkbox"></div>');
+                    mydata = document.getElementById("itemTextBox").value;
+                    if(mydata.length>0){
+                    $("#task").append('<div class="binding"><i class="fas fa-arrows-alt-v fa-lg drag"></i> <input class="list" type="text" value="'+mydata+'">' + '&nbsp' + '<button class="closing">x</button>' + '&nbsp' + '<input class="check" type="checkbox"></div>');
                     $("#task").sortable();
                     $("#itemTextBox").val("");
-                    }
+                    $.ajax({
+                      url: 'task_insert.php',
+                      type: 'post',
+                      data: {'taskData': mydata},
+                      dataType:'json',
+                    });
+                  }
                 });
                 $(document).on("click",".closing",function(){
                     $(this).parent().empty();
@@ -83,7 +89,17 @@
                 });
             });
         </script>
-        <?php if(isset($_SESSION['username'])) { ?>
+        <?php if(isset($_SESSION['username'])) {
+          $username = $_SESSION['username'];
+          $sql = "SELECT task FROM tasks join user on(tasks.userid = user.id) WHERE name = '$username'";
+          $result = mysqli_query($conn, $sql);
+          while ($task = mysqli_fetch_assoc($result)) { ?>
+          <script>
+            var task = "<?php echo $task['task'] ?>";
+            $("#task").append('<div class="binding"><i class="fas fa-arrows-alt-v fa-lg drag"></i> <input class="list" type="text" value="'+task+'">' + '&nbsp' + '<button class="closing">x</button>' + '&nbsp' + '<input class="check" type="checkbox"></div>');
+            $("#task").sortable();
+          </script>
+        <?php } ?>
           <script>
           $("#login").hide();
           $("#logout").show();
